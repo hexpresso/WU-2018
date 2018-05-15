@@ -15,9 +15,9 @@ Files:
 
 ## Solve
 
-Seem to be an open RCE with some retrictions ... As some others challenge from the same CTF, a PHP Zend framwork `.so` were given.
+Seem to be an open RCE (Remote Code Execution) with some retrictions ... As some others challenges from the same CTF gave a PHP Zend framwork `.so`.
 
-By doing a simple phpinfo() we can see that the restriction follow a first rule:
+By doing a simple `phpinfo();` we can see that the restriction follows a first rule:
 
 `No file operation outside of the current directory (this is what the open_basedir call do)`
 
