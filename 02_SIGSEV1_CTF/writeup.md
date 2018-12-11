@@ -19,11 +19,11 @@ The game. Si t'as pas le temps de lire, reviens demain.
 
 * __Première étape__ : découvrir le chall.
 
-Tout d'abord, on voit que le "site" possède seulement 2 pages:
-- Une page de création de compte (`/signUp`)
-- Une page de login (`/signIn`)
+Tout d'abord, on voit que le challenge possède seulement 2 pages:
+\- Une page de création de compte (`/signUp`),
+\- Une page de login (`/signIn`).
 
-Premier test que j'ai fait, essayer de créer un compte :
+Premier test que j'ai fait : essayer de créer un compte :
 
 ```
 >>> curl -s http://localhost:8000/signUp -d 'inputName=admin&inputPassword=perte'
@@ -78,14 +78,14 @@ Removed everything from the database and disabled persistence of changes in db u
 -->
 ```
 
-Ici, il y a 2 choses importantes : 
-- les 2 paramètres que l'on peut rajouter.
-- le fait que l'admin a désactivé la persistance.
+Ici, il y a deux choses importantes : 
+\- les 2 paramètres que l'on peut rajouter,
+\- le fait que l'admin a désactivé la persistance.
 
 Le message est clair, il semblerait qu'il y ait un rollback qui soit fait.
 
 En ayant ces informations, j'ai testé de faire une race condition en créant l'utilisateur `admin`,
-puis me connecter directement juste après, avant que le rollback soit fait.
+puis me connecter directement juste après, avant que le rollback ne soit fait.
 Mais dans ce cas, non seulement je ne me servais pas des paramètres donnés en commentaire, et puis
 surtout ... ça ne fonctionnait pas :)
 
@@ -131,9 +131,9 @@ Le post de Siben sur inshallhack est génial, avec schématisation (wikipedia ¢
 
 Après avoir bien RTFM, il ne reste plus qu'à créer le payload.
 Ce qu'il faut faire :
-- Créer un user admin/admin,
-- Instantanément, il faut directement faire lire à la DB les changements non commités : `transaction_isolation -> read-uncommitted`,
-- Et on essaye de se connecter ensuite.
+\- Créer un user admin/admin,
+\- Instantanément, il faut directement faire lire à la DB les changements non commités : `transaction_isolation -> read-uncommitted`,
+\- Et on essaye de se connecter ensuite.
 
 En BASH, ça donne simplement ça :
 
