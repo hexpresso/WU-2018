@@ -127,7 +127,7 @@ https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_tran
 https://inshallhack.org/production_debugging_sigsegv1_2018/
 ```
 
-Le post de Siben sur inshallhack est génial, avec schématisation (wikipedia ¢) des dirty reads.
+Le post de Siben sur inshallhack est génial, avec schématisation (wikipedia ©) des dirty reads.
 
 Après avoir bien RTFM, il ne reste plus qu'à créer le payload.
 Ce qu'il faut faire :<br>
