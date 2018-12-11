@@ -132,7 +132,8 @@ Le post de Siben sur inshallhack est génial, avec schématisation (wikipedia ¢
 Après avoir bien RTFM, il ne reste plus qu'à créer le payload.
 Ce qu'il faut faire :<br>
 \- Créer un user admin/admin,<br>
-\- Instantanément, il faut directement faire lire à la DB les changements non commités : `transaction_isolation -> read-uncommitted`,<br>
+\- Instantanément, il faut directement faire lire à la DB les changements non commités :<br>
+`transaction_isolation -> read-uncommitted`,<br>
 \- Et on essaye de se connecter ensuite.
 
 En BASH, ça donne simplement ça :
