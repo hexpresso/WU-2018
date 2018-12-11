@@ -19,8 +19,8 @@ The game. Si t'as pas le temps de lire, reviens demain.
 
 * __Première étape__ : découvrir le chall.
 
-Tout d'abord, on voit que le challenge possède seulement 2 pages:
-\- Une page de création de compte (`/signUp`),
+Tout d'abord, on voit que le challenge possède seulement 2 pages:<br>
+\- Une page de création de compte (`/signUp`),<br>
 \- Une page de login (`/signIn`).
 
 Premier test que j'ai fait : essayer de créer un compte :
@@ -78,8 +78,8 @@ Removed everything from the database and disabled persistence of changes in db u
 -->
 ```
 
-Ici, il y a deux choses importantes : 
-\- les 2 paramètres que l'on peut rajouter,
+Ici, il y a deux choses importantes :<br>
+\- les 2 paramètres que l'on peut rajouter,<br>
 \- le fait que l'admin a désactivé la persistance.
 
 Le message est clair, il semblerait qu'il y ait un rollback qui soit fait.
@@ -130,9 +130,9 @@ https://inshallhack.org/production_debugging_sigsegv1_2018/
 Le post de Siben sur inshallhack est génial, avec schématisation (wikipedia ¢) des dirty reads.
 
 Après avoir bien RTFM, il ne reste plus qu'à créer le payload.
-Ce qu'il faut faire :
-\- Créer un user admin/admin,
-\- Instantanément, il faut directement faire lire à la DB les changements non commités : `transaction_isolation -> read-uncommitted`,
+Ce qu'il faut faire :<br>
+\- Créer un user admin/admin,<br>
+\- Instantanément, il faut directement faire lire à la DB les changements non commités : `transaction_isolation -> read-uncommitted`,<br>
 \- Et on essaye de se connecter ensuite.
 
 En BASH, ça donne simplement ça :
