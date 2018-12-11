@@ -97,7 +97,8 @@ surtout ... ça ne fonctionnait pas :)
 Ce step est assez simple.
 J'ai récupéré une bonne partie des variables systèmes de MySQL : 
 ```
->>> curl -s 'https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html'| awk -F'[<>]' '/server-system.*class="literal/{!arr[$5]++}END{for (k in arr){print k}}' >> all_mysql_sysvar.lst
+>>> curl -s 'https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html'\
+| awk -F'[<>]' '/server-system.*class="literal/{!arr[$5]++}END{for (k in arr){print k}}' >> all_mysql_sysvar.lst
 ```
 
 Ca fait une petite liste de presque 300 vars.
@@ -109,7 +110,8 @@ Ca fait une petite liste de presque 300 vars.
 Petite surprise, certaines sont interdites : j'ai donc "bruteforcé" pour connaître les vars autorisées.
 
 ```
->>> while read VAR; do curl -s http://localhost:8000/signIn -d "inputName=admin&inputPassword=lel&debugVar=$VAR&debugVal=lel" |grep -q Forbidden || echo $VAR ; done < all_mysql_sysvar.lst >> allowed_mysql_vars.lst
+>>> while read VAR; do curl -s http://localhost:8000/signIn -d "inputName=admin&inputPassword=lel&debugVar=$VAR&debugVal=lel" \
+|grep -q Forbidden || echo $VAR ; done < all_mysql_sysvar.lst >> allowed_mysql_vars.lst
 >>> wc -l allowed_mysql_vars.lst 
 122 allowed_mysql_vars.lst
 ```
@@ -150,12 +152,12 @@ Il suffit d'attendre un peu :
 
 * __Conclusion__ :
 
-Un superbe challenge !
-Personellement, j'avais jamais trop travaillé sur MySQL de façon approfondie, et j'ai appris
-énormément de choses sur le fonctionnement d'une DB (MySQL).
-Merci à toi SIben pour l'idée du challenge, de m'avoir fait confiance en me le faisant tester en
-"avant-première", avant qu'il soit push sur le SigSev1 CTF.
-Et surtout : the game.
+> Un superbe challenge !
+> Personellement, j'avais jamais trop travaillé sur MySQL de façon approfondie, et j'ai appris
+> énormément de choses sur le fonctionnement d'une DB (MySQL).
+> Merci à toi SIben pour l'idée du challenge, de m'avoir fait confiance en me le faisant tester en
+> "avant-première", avant qu'il soit push sur le SigSev1 CTF.
+> Et surtout : the game.
 
 Enjoy,<br>
 \- [Notfound](https://twitter.com/Notfound404__)
